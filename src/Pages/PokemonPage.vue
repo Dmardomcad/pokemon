@@ -9,7 +9,10 @@
 
     <template v-if="showAnswer">
       <h2 class="fade-in">{{ message }}</h2>
-      <button @click="newGame">Jugar de nuevo</button>
+      <div class="btn-container">
+        <button class="game-button-ng" @click="newGame">Seguir jugando</button>
+        <button class="game-button-eg" @click="endGame">Terminar partida</button>
+      </div>
     </template>
   </div>
 </template>
@@ -27,6 +30,7 @@ export default {
       showPokemon: false,
       showAnswer: false,
       message: '',
+      aciertos: 0,
     }
   },
   methods: {
@@ -39,10 +43,15 @@ export default {
       this.showPokemon = true
       this.showAnswer = true
       if (selectedId === this.pokemon.id) {
-        this.message = `Correcto, ${this.pokemon.name}`
+        this.aciertos++
+        this.message = `Correcto, es ${this.pokemon.name}, ¡llevas ${this.aciertos} aciertos!.`
       } else {
-        this.message = `Ups, era ${this.pokemon.name}`
+        this.message = `Error, era ${this.pokemon.name}`
       }
+    },
+    endGame(){
+      this.message = `Se ha terminado la partida, ha tenido ${this.aciertos} aciertos en esta sesión de juego.`
+      this.aciertos = 0
     },
     newGame() {
       ;(this.showPokemon = false),
@@ -54,8 +63,27 @@ export default {
   },
   mounted() {
     this.mixPokemonArray()
+    
   },
 }
 </script>
 
-<style></style>
+<style>
+.btn-container{
+  display: flex;
+}
+.game-button-ng{
+  display: flex;
+  color: blue;
+  margin:auto;
+  cursor:pointer;
+}
+.game-button-eg{
+  display: flex;
+  color: red;
+  margin:auto;  
+  cursor:pointer;
+}
+
+
+</style>
