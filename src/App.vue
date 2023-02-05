@@ -1,19 +1,14 @@
 <template>
-  <div>
-    <PokemonPage/>
-  </div>
+  <PokemonPage />
 </template>
 
 <script>
-  import PokemonPage from '@/Pages/PokemonPage.vue';
-
-  export default {
-    components: {PokemonPage}
-  }
+import PokemonPage from './pages/PokemonPage.vue'
+export default { components: { PokemonPage } }
 </script>
 
 <style>
-  #app {
+#app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
